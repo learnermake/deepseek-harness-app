@@ -82,6 +82,28 @@ npm run dist:portable
 $env:ELECTRON_BUILDER_BINARIES_MIRROR = 'https://registry.npmmirror.com/-/binary/electron-builder-binaries/'
 ```
 
+## 发布 Release（重要细节）
+
+仓库：https://github.com/learnermake/deepseek-harness-app （`publish` 已配好）
+
+```powershell
+npm run dist                       # 先出产物
+gh release create v0.1.0 --title "..." --notes-file .release-notes.md `
+  "dist/DeepSeek-Harness-0.1.0-x64.exe" `
+  "dist/DeepSeek Harness-0.1.0-portable.exe" `
+  "dist/latest.yml"
+```
+
+三个必须注意的点，否则自动更新会静默失效：
+
+1. **必须一并上传 `dist/latest.yml`** —— 它是 electron-updater 的版本清单，缺了它客户端查不到更新。
+2. **`latest.yml` 里引用的文件名用连字符**（`DeepSeek-Harness-0.1.0-x64.exe`），
+   而 GitHub 会把上传文件名里的空格规范化成点号。所以要么按连字符名重新上传一份
+   （`Copy-Item` 改名后再 `gh release upload`），要么把 `artifactName` 改成不含空格的写法。
+   两种名字对不上时，客户端会下载 404。
+3. **不要用 PowerShell 重定向保存 gh 的 JSON 输出**（会写 UTF-8 BOM，Node 的 `JSON.parse` 直接报错）。
+   用 `gh --jq`，或显式用无 BOM 编码写文件。
+
 ## 踩过的坑（都已在代码里处理）
 
 ### 1. DSH Web 有进程级 token 门禁
