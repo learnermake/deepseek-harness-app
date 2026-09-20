@@ -73,7 +73,8 @@ module.exports = {
     artifactName: '${productName}-${version}-portable.${ext}',
   },
 
-  // 应用本体更新通道：electron-updater 需要一个发布源。
-  // 拿到地址后取消注释对应 provider 即可（harness 更新通道与此无关，已经可用）。
-  // publish: [{ provider: 'github', owner: '<owner>', repo: '<repo>' }],
+  // 应用本体更新通道（electron-updater）的发布源。
+  // 公开仓库的 Releases 可直接下载，运行时无需 token；发布时用 `gh release upload`
+  // 或 `npm run release`（需要 GH_TOKEN）。harness 更新通道与此无关，走 npm registry。
+  publish: [{ provider: 'github', owner: 'learnermake', repo: 'deepseek-harness-app' }],
 };

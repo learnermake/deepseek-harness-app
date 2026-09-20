@@ -19,7 +19,8 @@
     "prebuild": "node scripts/pack-bundle.mjs && node scripts/create-notices.cjs",
     "pack:dir": "npm run prebuild && electron-builder --config electron-builder.config.cjs --dir",
     "dist": "npm run prebuild && electron-builder --config electron-builder.config.cjs",
-    "dist:portable": "npm run prebuild && electron-builder --config electron-builder.config.cjs --win portable"
+    "dist:portable": "npm run prebuild && electron-builder --config electron-builder.config.cjs --win portable",
+    "release": "npm run prebuild && electron-builder --config electron-builder.config.cjs --publish always"
   },
   "devDependencies": {
     "electron": "^38.0.0",
