@@ -1,0 +1,31 @@
+{
+  "name": "deepseek-harness-desktop",
+  "productName": "DeepSeek Harness",
+  "version": "0.1.0",
+  "description": "DeepSeek Harness desktop app: a thin Electron shell around the dsh web runtime, with an independently updatable harness bundle.",
+  "private": true,
+  "author": "DeepSeek Harness Desktop",
+  "license": "MIT",
+  "main": "src/main/index.js",
+  "scripts": {
+    "start": "electron .",
+    "smoke": "electron . --smoke",
+    "smoke:tree": "node probe/smoke-test.mjs harness-bundle",
+    "bundle:create": "node scripts/create-bundle.mjs",
+    "bundle:tar": "node scripts/pack-bundle.mjs",
+    "icon:create": "node scripts/create-icon.cjs",
+    "node-runtime:create": "node scripts/create-node-runtime.mjs",
+    "notices": "node scripts/create-notices.cjs",
+    "prebuild": "node scripts/pack-bundle.mjs && node scripts/create-notices.cjs",
+    "pack:dir": "npm run prebuild && electron-builder --config electron-builder.config.cjs --dir",
+    "dist": "npm run prebuild && electron-builder --config electron-builder.config.cjs",
+    "dist:portable": "npm run prebuild && electron-builder --config electron-builder.config.cjs --win portable"
+  },
+  "devDependencies": {
+    "electron": "^38.0.0",
+    "electron-builder": "^26.0.12"
+  },
+  "dependencies": {
+    "electron-updater": "^6.6.2"
+  }
+}

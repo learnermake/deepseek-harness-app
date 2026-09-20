@@ -1,0 +1,155 @@
+:root {
+  --bg: #0f1115;
+  --panel: #161a22;
+  --panel-2: #1d222c;
+  --text: #e6e9ef;
+  --muted: #8c94a3;
+  --accent: #4c8dff;
+  --danger: #ff5f56;
+  --border: #262c38;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font: 14px/1.55 "Segoe UI", "Microsoft YaHei", system-ui, sans-serif;
+}
+
+.hidden { display: none !important; }
+.muted { color: var(--muted); }
+.small { font-size: 12px; }
+.grow { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+/* 覆盖层 */
+.overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(1200px 600px at 50% 0%, #171c26 0%, var(--bg) 70%);
+  z-index: 10;
+}
+
+.card {
+  width: min(720px, 92vw);
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 28px 28px 20px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, .45);
+}
+
+.brand { text-align: center; color: var(--text); }
+.brand h1 { margin: 10px 0 4px; font-size: 22px; font-weight: 650; letter-spacing: .2px; }
+.brand p { margin: 0 0 18px; }
+
+.progress {
+  height: 4px;
+  background: var(--panel-2);
+  border-radius: 4px;
+  overflow: hidden;
+  margin: 6px 0 18px;
+}
+.progress .bar {
+  height: 100%;
+  width: 38%;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  animation: slide 1.3s linear infinite;
+}
+@keyframes slide {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(300%); }
+}
+
+.error {
+  border: 1px solid rgba(255, 95, 86, .45);
+  background: rgba(255, 95, 86, .08);
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin-bottom: 16px;
+}
+.error-title { color: var(--danger); font-weight: 650; margin-bottom: 6px; }
+.error pre, .logbox pre {
+  margin: 0;
+  white-space: pre-wrap;
+  word-break: break-word;
+  font: 12px/1.5 Consolas, "Cascadia Mono", monospace;
+  color: #cfd6e4;
+}
+
+.logbox { margin-top: 6px; }
+.logbox summary { cursor: pointer; color: var(--muted); font-size: 12px; }
+.logbox pre { max-height: 190px; overflow: auto; margin-top: 8px; }
+
+.hint { margin-top: 14px; font-size: 12px; text-align: center; }
+.hint code { color: #b9c2d4; }
+
+.row { display: flex; gap: 8px; align-items: center; margin: 8px 0; }
+
+button {
+  font: inherit;
+  color: var(--text);
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 7px 13px;
+  cursor: pointer;
+}
+button:hover { border-color: #3a4356; background: #232936; }
+button.primary { background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 600; }
+button.primary:hover { background: #3d7cf0; }
+button.icon { padding: 2px 9px; font-size: 18px; line-height: 1.2; }
+button.chip { padding: 4px 9px; font-size: 12px; }
+
+.fab {
+  position: absolute;
+  right: 20px;
+  bottom: 18px;
+  border-radius: 999px;
+  padding: 9px 18px;
+  background: var(--panel-2);
+}
+
+/* 设置抽屉 */
+.drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: min(420px, 94vw);
+  height: 100%;
+  background: var(--panel);
+  border-left: 1px solid var(--border);
+  padding: 18px 20px 40px;
+  overflow: auto;
+  z-index: 20;
+  box-shadow: -18px 0 48px rgba(0, 0, 0, .42);
+}
+.drawer-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+.drawer section { border-top: 1px solid var(--border); padding: 14px 0 6px; }
+.drawer h2 { margin: 0 0 4px; font-size: 14px; }
+.drawer code { color: #b9c2d4; font-family: Consolas, monospace; font-size: 12px; }
+.drawer input {
+  font: inherit;
+  color: var(--text);
+  background: #10141b;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 6px 9px;
+  flex: 1;
+  min-width: 0;
+}
+.label { width: 96px; color: var(--muted); font-size: 12px; }
+.result {
+  margin-top: 10px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: var(--panel-2);
+  font-size: 12px;
+}
+.result.error { background: rgba(255, 95, 86, .1); color: #ffb3ae; }
+.versions { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }

@@ -1,0 +1,27 @@
+# ── 构建产物（走 GitHub Releases 分发，不进仓库）─────────────────────────────
+dist/
+*.exe
+*.blockmap
+builder-debug.yml
+
+# ── 由 npm 重新生成的依赖树与运行时（仓库只存源码）──────────────────────────
+node_modules/
+harness-bundle/
+harness-bundle.tar.gz
+node-runtime/
+
+# ── 生成的合规清单（由 npm run notices 重新生成）────────────────────────────
+THIRD-PARTY-NOTICES.txt
+
+# ── 本地临时/截图 ──────────────────────────────────────────────────────────
+.screenshot.png
+.shot*.png
+*.log
+
+# ── 凭据与本地配置（切勿入库）─────────────────────────────────────────────
+.env
+.env.*
+*.pem
+*.pfx
+credentials.json
+settings.json

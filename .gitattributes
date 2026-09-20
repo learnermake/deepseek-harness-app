@@ -1,0 +1,8 @@
+# 统一换行符，避免 Windows 上 git 反复提示 LF/CRLF
+* text=auto eol=lf
+
+# 二进制资源不做转换
+*.ico binary
+*.png binary
+*.exe binary
+*.tar.gz binary
